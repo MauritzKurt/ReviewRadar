@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "reviews#index"
+  root "homepage#home"
   
   devise_for :users
 
