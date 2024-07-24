@@ -10,5 +10,6 @@
 #
 class Company < ApplicationRecord
   has_many  :products, class_name: "Product", foreign_key: "company_id", dependent: :destroy
-  has_many  :reviews, class_name: "Review", foreign_key: "company_id", dependent: :destroy
+
+  has_many  :reviews, class_name: "Review", foreign_key: "company_id", dependent: :destroy, as: :reviewable
 end
