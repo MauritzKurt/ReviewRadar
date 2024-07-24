@@ -2,7 +2,7 @@
 #
 # Table name: reviews
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  body       :text
 #  status     :boolean
 #  title      :string
