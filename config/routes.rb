@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root "homepage#home"
-  
+  root 'homepage#home'
+
   devise_for :users
 
   resources :reviews
