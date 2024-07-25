@@ -7,6 +7,7 @@ task({ :sample_data => :environment }) do
   Company.delete_all
   User.delete_all
 
+  # Create users
   people = Array.new(10) do
     {
       username: Faker::Name.first_name
@@ -26,6 +27,27 @@ task({ :sample_data => :environment }) do
       password: "password",
       username: username.downcase,
       avatar_image: "https://robohash.org/#{username}"
+    )
+  end
+
+  #Create Companies
+  companies = Array.new(10) do
+    {
+      name: Faker::Company.name
+    }
+  end
+
+  companies << { name: "Google" }
+  companies << { name: "Apple" }
+  companies << { name: "Samsung" }
+  companies << { name: "Microsoft" }
+
+  companies.each do |company|
+    name = company.fetch(:name).downcase
+
+    company = Company.create(
+      name: name.downcase,
+      logo_image: Faker::Company.logo
     )
   end
 end
