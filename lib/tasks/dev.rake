@@ -103,7 +103,7 @@ unless Rails.env.production?
       end
     end
 
-    desc "Add sample reviews"
+    desc "Add Reviews"
     task sample_reviews: :environment do
       types = [Company, Product]
       50.times do
