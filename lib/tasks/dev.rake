@@ -1,53 +1,121 @@
-desc "Fill the database tables with some sample data"
-task({ :sample_data => :environment }) do
-  starting = Time.now
+unless Rails.env.production?
+  namespace :dev do
+    desc "Drop, create, migrate, seed database"
+    task hard_reset: [
+           :environment,
+           "db:drop",
+           "db:create",
+           "db:migrate",
+           "db:seed",
+           "dev:sample_data",
+         ] do
+      p "drop,create,migrate,seed,sample_data"
+    end
 
-  Review.delete_all
-  Product.delete_all
-  Company.delete_all
-  User.delete_all
+    desc "Delete all, keep database"
+    task soft_reset: [
+      :environment,
+      "dev:model_count"
+    ]
 
-  # Create users
-  people = Array.new(10) do
-    {
-      username: Faker::Name.first_name
-    }
-  end
+    desc "Add Users/Companies/Products/Reviews"
+    task sample_data: [
+      :environment,
+      "dev:start_time",
+      "dev:sample_users",
+      "dev:sample_companies",
+      "dev:sample_products",
+      "dev:sample_reviews",
+      "dev:end_time",
+    ]
 
-  people << { username: "Alice" }
-  people << { username: "Bob" }
-  people << { username: "Carol" }
-  people << { username: "Doug" }
+    desc "Delete all"
+    task delete_all: :environment do
+      Review.delete_all
+      Product.delete_all
+      Company.delete_all
+      User.delete_all
+    end
 
-  people.each do |person|
-    username = person.fetch(:username).downcase
+    desc "Task execution start time"
+    task start_time: :environment do
+      $starting_time = Time.now
+    end
 
-    user = User.create(
-      email: "#{username}@example.com",
-      password: "password",
-      username: username.downcase,
-      avatar_image: "https://robohash.org/#{username}"
-    )
-  end
+    desc "Task execution end time"
+    task end_time: :environment do
+      ending_time = Time.now
+      p "It took #{(ending_time - $starting_time).to_i} seconds to create sample data."
+      p "There are now #{User.count} users."
+      p "There are now #{Company.count} companies."
+      p "There are now #{Product.count} products."
+      p "There are now #{Review.count} reviews."
+    end
 
-  #Create Companies
-  companies = Array.new(10) do
-    {
-      name: Faker::Company.name
-    }
-  end
+    desc "Total model count"
+    task model_count: :environment do
+      p "There are #{User.count + Company.count + Product.count + Review.count} total models."
+    end
 
-  companies << { name: "Google" }
-  companies << { name: "Apple" }
-  companies << { name: "Samsung" }
-  companies << { name: "Microsoft" }
+    desc "Add Users"
+    task sample_users: :environment do
+      15.times do
+        username = Faker::Name.first_name
+        User.create(
+          username: username,
+          password: "password",
+          email: "#{username}@example.com",
+          avatar_image: "https://robohash.org/#{username}",
+        )
+      end
 
-  companies.each do |company|
-    name = company.fetch(:name).downcase
+      User.create(
+        username: "Alice",
+        password: "password",
+        email: "Alice@example.com",
+        avatar_image: "https://robohash.org/Alice",
+      )
+    end
 
-    company = Company.create(
-      name: name.downcase,
-      logo_image: Faker::Company.logo
-    )
+    desc "Add Companies"
+    task sample_companies: :environment do
+      10.times do
+        name = Faker::Company.name
+        Company.create(
+          name: name,
+          logo_image: "https://robohash.org/#{name}",
+          url: "https://google.com",
+        )
+      end
+    end
+
+    desc "Add Products"
+    task sample_products: :environment do
+      20.times do
+        name = Faker::Appliance.equipment
+        Product.create(
+          name: name,
+          logo_image: "https://robohash.org/#{name}",
+          url: "https://google.com",
+          description: Faker::ChuckNorris.fact,
+          company_id: Company.all.sample.id,
+        )
+      end
+    end
+
+    desc "Add sample reviews"
+    task sample_reviews: :environment do
+      types = [Company, Product]
+      50.times do
+        reviewable_type = types.sample
+        Review.create(
+          title: Faker::Movie.title,
+          body: Faker::Movie.quote,
+          reviewable_id: reviewable_type.all.sample.id,
+          reviewable_type: reviewable_type.name,
+          author_id: User.all.sample.id,
+        )
+      end
+    end
   end
 end
