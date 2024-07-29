@@ -1,12 +1,11 @@
-<div id="<%= dom_id company %>">
-  <p>
+<div id="<%= dom_id company %>" class="company-card">
+  <p class="company-name">
     <strong>Name:</strong>
-    <%= company.name %>
+    <%= link_to "#{company.name}", company %>
   </p>
 
-  <p>
+  <p class="company-url">
     <strong>Url:</strong>
-    <%= company.url %>
+    <%= link_to company.url, company.url %>
   </p>
-
 </div>

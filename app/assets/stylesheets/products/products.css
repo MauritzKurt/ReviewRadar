@@ -1,0 +1,42 @@
+.product-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.product-card p {
+  margin: 8px 0;
+  font-family: Arial, sans-serif;
+}
+
+.product-card .product-name strong,
+.product-card .product-description strong,
+.product-card .product-company strong,
+.product-card .product-url strong {
+  color: #333;
+  font-weight: bold;
+}
+
+.product-card .product-name,
+.product-card .product-description,
+.product-card .product-company,
+.product-card .product-url {
+  color: #555;
+}
+
+.product-card .product-url a {
+  color: #1a0dab;
+  text-decoration: none;
+}
+
+.product-card .product-url a:hover {
+  text-decoration: underline;
+}

@@ -10,17 +10,17 @@
       <ul class="navbar-nav mr-auto">
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to root_path(current_user.username), class: "nav-link" do %>
+            <%= link_to products_path, class: "nav-link" do %>
               <i class="fas fa-users fa-fw"></i></i>
 
-              Temp
+              Products
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to root_path(current_user.username), class: "nav-link" do %>
+            <%= link_to companies_path, class: "nav-link" do %>
               <i class="fas fa-compass fa-fw"></i>
 
-              Temp2
+              Companies
             <% end %>
           </li>
         <% end %>

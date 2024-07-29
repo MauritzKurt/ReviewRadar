@@ -1,22 +1,23 @@
-<div id="<%= dom_id product %>">
-  <p>
+<div id="<%= dom_id product %>" class="product-card">
+  <p class="product-name">
     <strong>Name:</strong>
-    <%= product.name %>
+    <%= link_to "#{product.name}", product %>
   </p>
 
-  <p>
+  <hr>
+
+  <p class="product-description">
     <strong>Description:</strong>
     <%= product.description %>
   </p>
 
-  <p>
+  <p class="product-company">
     <strong>Company:</strong>
-    <%= product.company_id %>
+    <%= product.company.name %>
   </p>
 
-  <p>
+  <p class="product-url">
     <strong>Url:</strong>
     <%= product.url %>
   </p>
-
 </div>
