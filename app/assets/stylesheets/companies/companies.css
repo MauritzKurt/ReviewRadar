@@ -1,0 +1,38 @@
+.company-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.company-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.company-card p {
+  margin: 8px 0;
+  font-family: Arial, sans-serif;
+}
+
+.company-card .company-name strong,
+.company-card .company-url strong {
+  color: #333;
+  font-weight: bold;
+}
+
+.company-card .company-name,
+.company-card .company-url {
+  color: #555;
+}
+
+.company-card .company-url a {
+  color: #1a0dab;
+  text-decoration: none;
+}
+
+.company-card .company-url a:hover {
+  text-decoration: underline;
+}
