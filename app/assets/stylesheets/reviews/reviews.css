@@ -1,0 +1,46 @@
+.review-card {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 16px;
+  margin: 16px 0;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
+
+.review-author {
+  font-weight: bold;
+  color: #555;
+}
+
+.review-status {
+  font-weight: bold;
+  color: #555;
+}
+
+.review-content {
+  padding: 8px 0;
+}
+
+.review-product,
+.review-title,
+.review-body {
+  margin-bottom: 8px;
+}
+
+.review-product strong,
+.review-title strong,
+.review-body strong {
+  color: #333;
+}
+
+.review-body {
+  white-space: pre-wrap;
+}

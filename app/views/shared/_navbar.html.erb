@@ -10,17 +10,17 @@
       <ul class="navbar-nav mr-auto">
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to feed_path(current_user.username), class: "nav-link" do %>
+            <%= link_to root_path(current_user.username), class: "nav-link" do %>
               <i class="fas fa-users fa-fw"></i></i>
 
-              Feed
+              Home
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to discover_path(current_user.username), class: "nav-link" do %>
+            <%= link_to root_path(current_user.username), class: "nav-link" do %>
               <i class="fas fa-compass fa-fw"></i>
 
-              Discover 
+              Home2 
             <% end %>
           </li>
         <% end %>
@@ -28,15 +28,15 @@
     </div>
     <ul class="navbar-nav">
       <% if user_signed_in? %>
-        <li class="nav-item">
-          <%= link_to new_photo_path, class: "nav-link" do %>
-            <i class="fas fa-plus-circle"></i>
+        <!--<li class="nav-item">-->
+          <%#= link_to new_photo_path, class: "nav-link" do %>
+<!--            <i class="fas fa-plus-circle"></i>
 
             Add post
-          <% end %>
-        </li>
+          <%# end %>-->
+<!--        </li>-->
         <li class="nav-item">
-          <%= link_to user_path(current_user.username), class: "nav-link" do %>
+          <%= link_to current_user_reviews_path(current_user.username), class: "nav-link" do %>
             <i class="fas fa-home fa-fw"></i>
 
             Your profile
@@ -48,7 +48,7 @@
           </a>
           <div class="dropdown-menu">
             <%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item" %>
-            <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
+            <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>
       <% else %>

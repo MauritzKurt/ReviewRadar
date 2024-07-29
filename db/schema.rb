@@ -10,51 +10,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_240_725_150_322) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_25_150322) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'companies', force: :cascade do |t|
-    t.string 'name'
-    t.string 'url'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'logo_image', default: 'logo_placeholder.png'
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "logo_image", default: "logo_placeholder.png"
   end
 
-  create_table 'products', force: :cascade do |t|
-    t.string 'name'
-    t.text 'description'
-    t.integer 'company_id'
-    t.string 'url'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'logo_image', default: 'logo_placeholder.png'
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "company_id"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "logo_image", default: "logo_placeholder.png"
   end
 
-  create_table 'reviews', force: :cascade do |t|
-    t.integer 'author_id'
-    t.string 'title'
-    t.text 'body'
-    t.boolean 'status'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'reviewable_type', null: false
-    t.bigint 'reviewable_id', null: false
-    t.index %w[reviewable_type reviewable_id], name: 'index_reviews_on_reviewable'
+  create_table "reviews", force: :cascade do |t|
+    t.integer "author_id"
+    t.string "title"
+    t.text "body"
+    t.boolean "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "reviewable_type", null: false
+    t.bigint "reviewable_id", null: false
+    t.index ["reviewable_type", "reviewable_id"], name: "index_reviews_on_reviewable"
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'email', default: '', null: false
-    t.string 'encrypted_password', default: '', null: false
-    t.string 'reset_password_token'
-    t.datetime 'reset_password_sent_at'
-    t.datetime 'remember_created_at'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'username'
-    t.string 'avatar_image', default: 'avatar_placeholder.png'
-    t.index ['email'], name: 'index_users_on_email', unique: true
-    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "username"
+    t.string "avatar_image", default: "avatar_placeholder.png"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
 end

@@ -1,27 +1,27 @@
-<div id="<%= dom_id review %>">
-  <p>
-    <strong>Author:</strong>
-    <%= review.author_id %>
-  </p>
+<div id="<%= dom_id review %>" class="review-card">
+  <div class="review-header">
+    <div class="review-author">
+      <strong>Author:</strong>
+      <%= review.author.username %>
+    </div>
+    <div class="review-status">
+      <strong>Status:</strong>
+      <%= review.status ? 'Active' : 'Inactive' %>
+    </div>
+  </div>
 
-  <p>
-    <strong>Product:</strong>
-    <%= review.product_id %>
-  </p>
-
-  <p>
-    <strong>Title:</strong>
-    <%= review.title %>
-  </p>
-
-  <p>
-    <strong>Body:</strong>
-    <%= review.body %>
-  </p>
-
-  <p>
-    <strong>Status:</strong>
-    <%= review.status %>
-  </p>
-
+  <div class="review-content">
+    <div class="review-product">
+      <strong>Product:</strong>
+      <%= review.reviewable.name %>
+    </div>
+    <div class="review-title">
+      <strong>Title:</strong>
+      <%= review.title %>
+    </div>
+    <div class="review-body">
+      <strong>Body:</strong>
+      <%= review.body %>
+    </div>
+  </div>
 </div>
