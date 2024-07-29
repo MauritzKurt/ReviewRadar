@@ -15,6 +15,7 @@ unless Rails.env.production?
     desc 'Delete all, keep database'
     task soft_reset: [
       :environment,
+      'dev:delete_all',
       'dev:model_count'
     ]
 
