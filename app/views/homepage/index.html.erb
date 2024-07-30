@@ -10,34 +10,46 @@
   </div>
 <% end %>
 
-<h2>Products</h2>
-<div class="product-list">
-  <% @products.each do |product| %>
-    <div class="product-card">
-      <p class="product-name"><strong>Name:</strong> <%= product.name %></p>
-      <hr>
-      <p class="product-description"><strong>Description:</strong> <%= product.description %></p>
-      <p class="product-company"><strong>Company:</strong> <%= product.company.name %></p>
-      <p>
-        <%= link_to 'Show', product %>
-        <%= link_to 'Edit', edit_product_path(product) %>
-        <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
-      </p>
+<h2 class="collapsible-header">Products</h2>
+<div class="collapsible-content hidden">
+  <% if @products.any? %>
+    <div class="product-list">
+      <% @products.each do |product| %>
+        <div class="product-card">
+          <p class="product-name"><strong>Name:</strong> <%= product.name %></p>
+          <hr>
+          <p class="product-description"><strong>Description:</strong> <%= product.description %></p>
+          <p class="product-company"><strong>Company:</strong> <%= product.company.name %></p>
+          <p>
+            <%= link_to 'Show', product %>
+            <%= link_to 'Edit', edit_product_path(product) %>
+            <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </p>
+        </div>
+      <% end %>
     </div>
+  <% else %>
+    <p>No products found.</p>
   <% end %>
 </div>
 
-<h2>Companies</h2>
-<div class="company-list">
-  <% @companies.each do |company| %>
-    <div class="company-card">
-      <p class="company-name"><strong>Name:</strong> <%= company.name %></p>
-      <p class="company-url"><strong>URL:</strong> <%= link_to company.url, company.url %></p>
-      <p>
-        <%= link_to 'Show', company %>
-        <%= link_to 'Edit', edit_company_path(company) %>
-        <%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %>
-      </p>
+<h2 class="collapsible-header">Companies</h2>
+<div class="collapsible-content hidden">
+  <% if @companies.any? %>
+    <div class="company-list">
+      <% @companies.each do |company| %>
+        <div class="company-card">
+          <p class="company-name"><strong>Name:</strong> <%= company.name %></p>
+          <p class="company-url"><strong>URL:</strong> <%= link_to company.url, company.url %></p>
+          <p>
+            <%= link_to 'Show', company %>
+            <%= link_to 'Edit', edit_company_path(company) %>
+            <%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </p>
+        </div>
+      <% end %>
     </div>
+  <% else %>
+    <p>No companies found.</p>
   <% end %>
 </div>
