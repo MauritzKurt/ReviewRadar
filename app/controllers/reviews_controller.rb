@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: %i[show edit update destroy]
 
   def index
-    @reviews = policy_scope(Review.includes(:reviewable))
+    @reviews = policy_scope(Review)
     authorize @reviews
   end
 

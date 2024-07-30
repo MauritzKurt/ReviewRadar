@@ -14,5 +14,12 @@
 class Product < ApplicationRecord
   belongs_to :company, required: true, class_name: 'Company', foreign_key: 'company_id'
   has_many :reviews, as: :reviewable, dependent: :destroy
-end
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[company]
+  end
+end
