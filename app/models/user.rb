@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  admin                  :boolean          default(FALSE)
 #  avatar_image           :string           default("avatar_placeholder.png")
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null

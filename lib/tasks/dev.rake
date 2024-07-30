@@ -74,6 +74,7 @@ unless Rails.env.production?
         username: 'Alice',
         password: 'password',
         email: 'Alice@example.com',
+        admin: true,
         avatar_image: 'https://robohash.org/Alice'
       )
     end

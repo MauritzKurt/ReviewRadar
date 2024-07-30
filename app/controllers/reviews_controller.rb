@@ -2,50 +2,48 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: %i[show edit update destroy]
 
   def index
-    @reviews = Review.includes(:reviewable).all
+    @reviews = policy_scope(Review.includes(:reviewable))
+    authorize @reviews
   end
 
-  def show; end
+  def show
+    authorize @review
+  end
 
   def new
     @review = Review.new
+    authorize @review
   end
 
-  def edit; end
+  def edit
+    authorize @review
+  end
 
   def create
     @review = Review.new(review_params)
+    authorize @review
 
-    respond_to do |format|
-      if @review.save
-        format.html { redirect_to review_url(@review), notice: 'Review was successfully created.' }
-        format.json { render :show, status: :created, location: @review }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
-      end
+    if @review.save
+      redirect_to review_url(@review), notice: 'Review was successfully created.'
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   def update
-    respond_to do |format|
-      if @review.update(review_params)
-        format.html { redirect_to review_url(@review), notice: 'Review was successfully updated.' }
-        format.json { render :show, status: :ok, location: @review }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
-      end
+    authorize @review
+
+    if @review.update(review_params)
+      redirect_to review_url(@review), notice: 'Review was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @review.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to reviews_url, notice: 'Review was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    authorize @review
+    @review.destroy
+    redirect_to reviews_url, notice: 'Review was successfully destroyed.'
   end
 
   private
