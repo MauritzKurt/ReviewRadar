@@ -12,5 +12,12 @@
 class Company < ApplicationRecord
   has_many :products, class_name: 'Product', foreign_key: 'company_id', dependent: :destroy
   has_many :reviews, as: :reviewable, dependent: :destroy
-end
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[products]
+  end
+end
