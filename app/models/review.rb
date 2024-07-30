@@ -17,8 +17,7 @@
 #  index_reviews_on_reviewable  (reviewable_type,reviewable_id)
 #
 class Review < ApplicationRecord
-  belongs_to :author, required: true, class_name: 'User', foreign_key: 'author_id'
+  belongs_to :author, class_name: 'User', foreign_key: 'author_id', required: true
   belongs_to :reviewable, polymorphic: true
-  # belongs_to :product, required: true, class_name: "Product", foreign_key: "product_id"
-  # belongs_to :company, required: true, class_name: "Company", foreign_key: "company_id"
 end
+
