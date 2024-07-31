@@ -11,8 +11,10 @@
     <%= product.description %>
   </p>
 
-  <p class="product-company">
-    <strong>Company:</strong>
-    <%= link_to product.company.name, company_path(product.company) %></p>
+  <% if request.url != products_url %>
+    <p class="product-company">
+      <strong>Company:</strong>
+      <%= link_to product.company.name, company_path(product.company) %></p>
   </p>
+<% end %>
 </div>

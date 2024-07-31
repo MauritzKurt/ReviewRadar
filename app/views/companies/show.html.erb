@@ -1,8 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
 <h1><%= @company.name %></h1>
-<p><strong>URL:</strong> <%= link_to @company.url, @company.url %></p>
-<p><strong>Created At:</strong> <%= @company.created_at %></p>
 
 <%= render @company %>
 
@@ -22,8 +20,12 @@
 </div>
 
 <div>
-  <%= link_to "Edit this company", edit_company_path(@company) %> |
   <%= link_to "Back to companies", companies_path %>
-
-  <%= button_to "Destroy this company", @company, method: :delete, data: { confirm: 'Are you sure?' } %>
 </div>
+
+<% if current_user.admin? %>
+  <div>
+    <%= link_to "Edit this company", edit_company_path(@company) %> |
+    <%= button_to "Destroy this company", @company, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+<% end %>

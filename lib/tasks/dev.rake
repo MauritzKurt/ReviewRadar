@@ -91,7 +91,7 @@ unless Rails.env.production?
 
     desc 'Add Companies'
     task sample_companies: :environment do
-      30.times do
+      11.times do
         name = Faker::Company.name
         Company.create(
           name:,
@@ -104,7 +104,7 @@ unless Rails.env.production?
 
     desc 'Add Products'
     task sample_products: :environment do
-      100.times do
+      50.times do
         name = Faker::Appliance.equipment
         Product.create(
           name:,
