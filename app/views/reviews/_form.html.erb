@@ -1,42 +1,45 @@
-<%= form_with(model: review) do |form| %>
+<%= form_with(model: review, local: true, class: 'review-card') do |form| %>
   <% if review.errors.any? %>
-    <div style="color: red">
+    <div class="review-errors" style="color: red;">
       <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
-
       <ul>
-        <% review.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% review.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :author_id, style: "display: block" %>
+  <div style="display: none;">
+    <%= form.label :author_id %>
     <%= form.number_field :author_id %>
   </div>
 
-  <div>
-    <%= form.label :product_id, style: "display: block" %>
-    <%= form.number_field :product_id %>
+  <div style="display: none;">
+    <%= form.label :reviewable_id %>
+    <%= form.number_field :reviewable_id %>
   </div>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+  <div class="review-header">
+    <div class="review-title">
+      <%= form.label :title, style: "display: block" %>
+      <%= form.text_field :title, class: 'form-control' %>
+    </div>
   </div>
-
-  <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.text_area :body %>
+  
+  <div class="review-content">
+    <div class="review-body">
+      <%= form.label :body, style: "display: block" %>
+      <%= form.text_area :body, class: 'form-control' %>
+    </div>
   </div>
-
-  <div>
-    <%= form.label :status, style: "display: block" %>
+  
+  <div style="display: none;">
+    <%= form.label :status %>
     <%= form.check_box :status %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="actions">
+    <%= form.submit 'Save Review', class: 'btn btn-primary' %>
   </div>
 <% end %>
