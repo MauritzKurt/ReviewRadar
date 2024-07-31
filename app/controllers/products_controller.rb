@@ -7,7 +7,9 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @reviews = @product.reviews
     authorize @product
+    authorize @reviews
   end
 
   def new
