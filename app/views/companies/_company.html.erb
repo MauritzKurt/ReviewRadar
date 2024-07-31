@@ -4,8 +4,17 @@
     <%= link_to "#{company.name}", company %>
   </p>
 
-  <p class="company-url">
-    <strong>Url:</strong>
-    <%= link_to company.url, company.url %>
+  <hr>
+
+  <p class="company-description">
+    <strong>Description:</strong>
+    <%= company.description %>
   </p>
+
+  <% if request.url != companies_url %>
+    <p class="company-url">
+      <strong>Url:</strong>
+      <%= link_to company.url, company.url %>
+    </p>
+  <% end%>
 </div>

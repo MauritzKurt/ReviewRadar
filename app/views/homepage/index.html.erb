@@ -18,10 +18,6 @@
         <div class="product-card">
           <strong>Name:</strong>
           <%= link_to product.name, product_path(product) %></p>
-          <hr>
-          <p class="product-description"><strong>Description:</strong> <%= product.description %></p>
-          <strong>Company:</strong>
-          <%= link_to product.company.name, company_path(product.company) %></p>
         <% if current_user.admin? %>
           <p>
             <%= link_to 'Show', product %>
@@ -44,7 +40,6 @@
       <% @companies.each do |company| %>
         <div class="company-card">
           <p class="company-name"><strong>Name:</strong> <%= link_to company.name, company_path(company) %></p>
-<!--          <p class="company-url"><strong>URL:</strong> <%#= link_to company.url, company.url %></p>-->
           <% if current_user.admin? %>
             <p>
               <%= link_to 'Show', company %>

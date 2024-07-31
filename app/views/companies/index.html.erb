@@ -8,4 +8,6 @@
   <% end %>
 </div>
 
-<%= link_to "New company", new_company_path %>
+<% if current_user.admin? %>
+  <%= link_to "New company", new_company_path %>
+<% end %>
