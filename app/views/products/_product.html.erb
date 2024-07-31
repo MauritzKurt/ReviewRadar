@@ -13,11 +13,6 @@
 
   <p class="product-company">
     <strong>Company:</strong>
-    <%= product.company.name %>
-  </p>
-
-  <p class="product-url">
-    <strong>Url:</strong>
-    <%= product.url %>
+    <%= link_to product.company.name, company_path(product.company) %></p>
   </p>
 </div>
