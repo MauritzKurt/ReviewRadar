@@ -1,10 +1,18 @@
 .review-card {
   border: 1px solid #ddd;
   border-radius: 4px;
-  padding: 16px;
+  padding: 10px;
   margin: 16px 0;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-errors {
+  border: 1px solid #e74c3c;
+  background-color: #f9e6e6;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
 }
 
 .review-header {
@@ -29,18 +37,50 @@
   padding: 8px 0;
 }
 
-.review-product,
-.review-title,
-.review-body {
+.review-title {
   margin-bottom: 8px;
 }
 
-.review-product strong,
-.review-title strong,
-.review-body strong {
+.review-title {
   color: #333;
 }
 
-.review-body {
-  white-space: pre-wrap;
+.actions {
+  margin-top: 8px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.form-control {
+  width: 100%;
+  padding: 4px;  /* Further reduced padding */
+  margin: 2px 0;  /* Reduced margin */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  height: auto;  /* Adjust height for text area */
+}
+
+.form-control.text-area {
+  height: 100px;  /* Set height for text area */
 }
