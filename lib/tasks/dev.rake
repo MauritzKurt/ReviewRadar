@@ -66,7 +66,8 @@ unless Rails.env.production?
           username:,
           password: 'password',
           email: "#{username}@example.com",
-          avatar_image: "https://robohash.org/#{username}"
+          avatar_image: "https://robohash.org/#{username}",
+          verified: rand(2)
         )
       end
 
@@ -75,16 +76,26 @@ unless Rails.env.production?
         password: 'password',
         email: 'Alice@example.com',
         admin: true,
-        avatar_image: 'https://robohash.org/Alice'
+        avatar_image: 'https://robohash.org/Alice',
+        verified: true
+      )
+      User.create(
+        username: 'Bob',
+        password: 'password',
+        email: 'Bob@example.com',
+        admin: false,
+        avatar_image: 'https://robohash.org/Bob',
+        verified: false
       )
     end
 
     desc 'Add Companies'
     task sample_companies: :environment do
-      10.times do
+      30.times do
         name = Faker::Company.name
         Company.create(
           name:,
+          description: Faker::Company.catch_phrase,
           logo_image: "https://robohash.org/#{name}",
           url: 'https://google.com'
         )
@@ -93,7 +104,7 @@ unless Rails.env.production?
 
     desc 'Add Products'
     task sample_products: :environment do
-      20.times do
+      100.times do
         name = Faker::Appliance.equipment
         Product.create(
           name:,
@@ -108,7 +119,7 @@ unless Rails.env.production?
     desc 'Add Reviews'
     task sample_reviews: :environment do
       types = [Company, Product]
-      50.times do
+      150.times do
         reviewable_type = types.sample
         Review.create(
           title: Faker::Movie.title,
