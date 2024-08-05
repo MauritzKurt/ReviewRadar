@@ -10,7 +10,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  username               :string
+#  username               :string           not null
 #  verified               :boolean          default(FALSE)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -24,6 +24,9 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
+
+  validates :username, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
 
   has_many :reviews, class_name: 'Review', foreign_key: 'author_id', dependent: :destroy
 end
