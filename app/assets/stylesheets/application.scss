@@ -1,0 +1,10 @@
+// Import Bootstrap
+@import "bootstrap";
+
+// Import other stylesheets
+@import "shared/collapsible"; // Add other imports if needed
+
+// Importing styles from specific folders
+@import "companies/companies";
+@import "products/products";
+@import "reviews/reviews";

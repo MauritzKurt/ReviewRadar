@@ -1,37 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>ReviewRadar</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>ReviewRadar</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= render partial: "shared/cdn_assets" %>
+  <%= render partial: "shared/cdn_assets" %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-    <%= javascript_include_tag 'application' %>
-    <%= stylesheet_link_tag 'shared/collapsible' %>
-  </head>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag 'shared/collapsible' %>
+  <%= javascript_importmap_tags %>
+  <%= javascript_include_tag 'application' %>
+</head>
 
-  <body>
-    <%= render partial: "shared/navbar" %>
+<body>
+  <%= render partial: "shared/navbar" %>
 
-    <div class="container">
-      <div class="row mb-4">
-        <div class="col-md-6 offset-md-3">
-          <% if notice.present? %>
-            <%= render partial: "shared/flash", locals: { message: notice, css_class: "success" } %>
-          <% end %>
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col-md-6 offset-md-3">
+        <% if notice.present? %>
+          <%= render partial: "shared/flash", locals: { message: notice, css_class: "success" } %>
+        <% end %>
 
-          <% if alert.present? %>
-            <%= render partial: "shared/flash", locals: { message: alert, css_class: "danger" } %>
-          <% end %>
-        </div>
+        <% if alert.present? %>
+          <%= render partial: "shared/flash", locals: { message: alert, css_class: "danger" } %>
+        <% end %>
       </div>
-
-      <%= yield %>
-
     </div>
-  </body>
+
+    <%= yield %>
+  </div>
+
+  <%= javascript_include_tag 'application' %>
+</body>
 </html>
