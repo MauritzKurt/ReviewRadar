@@ -10,34 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_31_164624) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_07_060701) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "companies", force: :cascade do |t|
-    t.string "name"
-    t.string "url"
+    t.string "name", null: false
+    t.string "url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "logo_image", default: "logo_placeholder.png"
-    t.text "description"
+    t.text "description", null: false
   end
 
   create_table "products", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.integer "company_id"
-    t.string "url"
+    t.string "name", null: false
+    t.text "description", null: false
+    t.integer "company_id", null: false
+    t.string "url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "logo_image", default: "logo_placeholder.png"
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer "author_id"
-    t.string "title"
-    t.text "body"
-    t.boolean "status"
+    t.integer "author_id", null: false
+    t.string "title", null: false
+    t.text "body", null: false
+    t.boolean "status", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "reviewable_type", null: false
