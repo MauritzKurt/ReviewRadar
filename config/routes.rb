@@ -8,7 +8,12 @@ Rails.application.routes.draw do
   # get ':products' => 'products#index', as: :products_index
   # get ':companies' => 'companies#index', as: :companies_index
   
-  resources :reviews
+  resources :reviews do
+    collection do
+      get :get_items
+    end
+  end
+  
   resources :products
   resources :companies
 end

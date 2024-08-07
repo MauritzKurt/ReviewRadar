@@ -9,9 +9,6 @@
     <%= render partial: "shared/cdn_assets" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-    <%= javascript_include_tag 'application' %>
-    <%= stylesheet_link_tag 'shared/collapsible' %>
   </head>
 
   <body>
@@ -32,6 +29,7 @@
 
       <%= yield %>
 
+      <%= javascript_importmap_tags %>
     </div>
   </body>
 </html>

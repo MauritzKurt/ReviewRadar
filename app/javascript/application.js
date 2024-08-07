@@ -2,10 +2,14 @@
 import { Turbo } from "@hotwired/turbo-rails"
 import "controllers"
 
-Turbo.session.drive = false
+Turbo.session.drive = true
 
 import jquery from "jquery";
 window.jQuery = jquery;
 window.$ = jquery;
+
 import Rails from "@rails/ujs"
 Rails.start();
+
+// Custom
+import "./reviews"

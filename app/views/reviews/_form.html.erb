@@ -1,8 +1,7 @@
-<%= form_with(model: review) do |form| %>
+<%= form_with(model: review, data: { turbo: true }) do |form| %>
   <% if review.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
-
       <ul>
         <% review.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,8 +10,7 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :author_id, style: "display: none" %>
+  <div style="display: none">
     <%= form.hidden_field :author_id, value: current_user.id %>
   </div>
 
@@ -30,30 +28,25 @@
 
   <div class="mb-3">
     <%= form.label :reviewable_id, 'Select Item:', class: 'form-label' %>
-    <%= form.select :reviewable_id, options_for_select(@items.map { |item| [item.name, item.id] }), {}, class: 'form-select' %>
+    <%= form.select :reviewable_id, options_for_select(@items.map { |item| [item.name, item.id] }), {}, class: 'form-select', id: 'review_reviewable_id' %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :content, 'Review Content:', class: 'form-label' %>
-    <%= form.text_area :content, class: 'form-control', rows: 4 %>
+    <%= form.label :title, 'Title:', class: 'form-label' %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :body, 'Review Content:', class: 'form-label' %>
+    <%= form.text_area :body, class: 'form-control', rows: 4 %>
+  </div>
+
+  <div class="mb-3 form-check">
+    <%= form.check_box :status, class: 'form-check-input', id: 'status' %>
+    <%= form.label :status, 'Published', class: 'form-check-label', for: 'status' %>
   </div>
 
   <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.text_area :body %>
-  </div>
-
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.check_box :status %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit 'Submit', class: 'btn btn-primary' %>
   </div>
 <% end %>
