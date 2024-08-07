@@ -17,7 +17,6 @@ class ReviewsController < ApplicationController
     @review = Review.new
     @items = policy_scope(Company)
     authorize @review
-    authorize @items
   end
 
   def edit
