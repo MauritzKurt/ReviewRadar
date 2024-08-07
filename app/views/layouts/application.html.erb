@@ -10,14 +10,12 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <%= javascript_include_tag 'application' %>
-    <%= stylesheet_link_tag 'shared/collapsible' %>
   </head>
 
   <body>
     <%= render partial: "shared/navbar" %>
 
-    <div class="container">
+    <div class="container col-md-8">
       <div class="row mb-4">
         <div class="col-md-6 offset-md-3">
           <% if notice.present? %>
@@ -31,7 +29,6 @@
       </div>
 
       <%= yield %>
-
     </div>
   </body>
 </html>
