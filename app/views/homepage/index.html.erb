@@ -10,47 +10,60 @@
   </div>
 <% end %>
 
-<h2 class="collapsible-header">Products</h2>
-<div class="collapsible-content hidden">
-  <% if @products.any? %>
-    <div class="product-list">
-      <% @products.each do |product| %>
-        <div class="product-card">
-          <strong>Name:</strong>
-          <%= link_to product.name, product_path(product) %></p>
-        <% if current_user.admin? %>
-          <p>
-            <%= link_to 'Show', product %>
-            <%= link_to 'Edit', edit_product_path(product) %>
-            <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
-          </p>
-        <% end %>
+<% if @products.any? || @companies.any? %>
+  <div class="accordion" id="accordionExample">
+    <% if @products.any? %>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Products
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <% @products.each do |product| %>
+              <div class='product-card'>
+                <p class="product-name"><strong>Name:</strong> <%= link_to product.name, product_path(product) %></p>
+                <% if current_user.admin? %>
+                  <p>
+                    <%= link_to 'Show', product %>
+                    <%= link_to 'Edit', edit_product_path(product) %>
+                    <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  </p>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <% if @companies.any? %>
+    
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Companies
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <% @companies.each do |company| %>
+              <div class="company-card">
+                <p class="company-name"><strong>Name:</strong> <%= link_to company.name, company_path(company) %></p>
+                <% if current_user.admin? %>
+                  <p>
+                    <%= link_to 'Show', company %>
+                    <%= link_to 'Edit', edit_company_path(company) %>
+                    <%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  </p>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>
 <% else %>
-  <p>No products found.</p>
+  <h3>No Results found.</h3>
 <% end %>
-</div>
-
-<h2 class="collapsible-header">Companies</h2>
-<div class="collapsible-content hidden">
-  <% if @companies.any? %>
-    <div class="company-list">
-      <% @companies.each do |company| %>
-        <div class="company-card">
-          <p class="company-name"><strong>Name:</strong> <%= link_to company.name, company_path(company) %></p>
-          <% if current_user.admin? %>
-            <p>
-              <%= link_to 'Show', company %>
-              <%= link_to 'Edit', edit_company_path(company) %>
-              <%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %>
-            </p>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  <% else %>
-    <p>No companies found.</p>
-  <% end %>
-</div>
