@@ -17,8 +17,13 @@
   </div>
 
   <div>
-    <%= form.label :product_id, style: "display: block" %>
-    <%= form.number_field :product_id %>
+    <%= form.label :reviewable_type, style: "display: block" %>
+    <%= form.text_field :reviewable_type %>
+  </div>
+
+  <div>
+    <%= form.label :reviewable_id, style: "display: block" %>
+    <%= form.number_field :reviewable_id %>
   </div>
 
   <div>

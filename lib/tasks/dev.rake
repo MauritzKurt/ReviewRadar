@@ -92,7 +92,7 @@ unless Rails.env.production?
     desc 'Add Companies'
     task sample_companies: :environment do
       11.times do
-        name = Faker::Company.name
+        name = Faker::Device.manufacturer
         Company.create(
           name:,
           description: Faker::Company.catch_phrase,
@@ -105,7 +105,7 @@ unless Rails.env.production?
     desc 'Add Products'
     task sample_products: :environment do
       50.times do
-        name = Faker::Appliance.equipment
+        name = Faker::Device.model_name
         Product.create(
           name:,
           logo_image: "https://robohash.org/#{name}",

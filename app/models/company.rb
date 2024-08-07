@@ -15,8 +15,8 @@ class Company < ApplicationRecord
   has_many :reviews, as: :reviewable, dependent: :destroy
 
   validates :name, presence: true, uniqueness: true
-  validates :description, presence: true
   validates :url, presence: true
+  validates :description, presence: true
   
   def self.ransackable_attributes(auth_object = nil)
     %w[name]
