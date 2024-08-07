@@ -12,18 +12,30 @@
   <% end %>
 
   <div>
-    <%= form.label :author_id, style: "display: block" %>
-    <%= form.number_field :author_id %>
+    <%= form.label :author_id, style: "display: none" %>
+    <%= form.hidden_field :author_id, value: current_user.id %>
   </div>
 
-  <div>
-    <%= form.label :reviewable_type, style: "display: block" %>
-    <%= form.text_field :reviewable_type %>
+  <div class="mb-3">
+    <%= form.label :reviewable_type, 'Choose Type:', class: 'form-label' %>
+    <div class="form-check">
+      <%= form.radio_button :reviewable_type, 'Company', class: 'form-check-input', id: 'company', checked: true %>
+      <%= form.label :reviewable_type, 'Company', class: 'form-check-label', for: 'company' %>
+    </div>
+    <div class="form-check">
+      <%= form.radio_button :reviewable_type, 'Product', class: 'form-check-input', id: 'product' %>
+      <%= form.label :reviewable_type, 'Product', class: 'form-check-label', for: 'product' %>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :reviewable_id, style: "display: block" %>
-    <%= form.number_field :reviewable_id %>
+  <div class="mb-3">
+    <%= form.label :reviewable_id, 'Select Item:', class: 'form-label' %>
+    <%= form.select :reviewable_id, options_for_select(@items.map { |item| [item.name, item.id] }), {}, class: 'form-select' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :content, 'Review Content:', class: 'form-label' %>
+    <%= form.text_area :content, class: 'form-control', rows: 4 %>
   </div>
 
   <div>

@@ -12,7 +12,9 @@ class ReviewsController < ApplicationController
 
   def new
     @review = Review.new
+    @items = Company.all
     authorize @review
+    authorize @items
   end
 
   def edit
@@ -44,6 +46,14 @@ class ReviewsController < ApplicationController
     authorize @review
     @review.destroy
     redirect_to reviews_url, notice: 'Review was successfully destroyed.'
+  end
+
+  def get_items
+    type = params[:type]
+    @items = type == 'Company' ? Company.all : Product.all
+    render json: @items.map { |item| { id: item.id, name: item.name } }
+    authorize @items
+    authorize item
   end
 
   private
