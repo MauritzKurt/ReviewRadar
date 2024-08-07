@@ -15,35 +15,36 @@
   </div>
 
   <div class="mb-3">
-    <%= form.label :reviewable_type, 'Choose Type:', class: 'form-label' %>
+    <!-- Remove the 'for' attribute from the main label -->
+    <label class="form-label">Choose Type:</label>
     <div class="form-check">
-      <%= form.radio_button :reviewable_type, 'Company', class: 'form-check-input', id: 'company', checked: true %>
-      <%= form.label :reviewable_type, 'Company', class: 'form-check-label', for: 'company' %>
+      <%= form.radio_button :reviewable_type, 'Company', class: 'form-check-input', id: 'review_reviewable_type_company', checked: true %>
+      <%= form.label :reviewable_type_company, 'Company', class: 'form-check-label', for: 'review_reviewable_type_company' %>
     </div>
     <div class="form-check">
-      <%= form.radio_button :reviewable_type, 'Product', class: 'form-check-input', id: 'product' %>
-      <%= form.label :reviewable_type, 'Product', class: 'form-check-label', for: 'product' %>
+      <%= form.radio_button :reviewable_type, 'Product', class: 'form-check-input', id: 'review_reviewable_type_product' %>
+      <%= form.label :reviewable_type_product, 'Product', class: 'form-check-label', for: 'review_reviewable_type_product' %>
     </div>
   </div>
 
   <div class="mb-3">
-    <%= form.label :reviewable_id, 'Select Item:', class: 'form-label' %>
+    <%= form.label :reviewable_id, 'Select Item:', class: 'form-label', for: 'review_reviewable_id' %>
     <%= form.select :reviewable_id, options_for_select(@items.map { |item| [item.name, item.id] }), {}, class: 'form-select', id: 'review_reviewable_id' %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :title, 'Title:', class: 'form-label' %>
-    <%= form.text_field :title, class: 'form-control' %>
+    <%= form.label :title, 'Title:', class: 'form-label', for: 'review_title' %>
+    <%= form.text_field :title, class: 'form-control', id: 'review_title' %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :body, 'Review Content:', class: 'form-label' %>
-    <%= form.text_area :body, class: 'form-control', rows: 4 %>
+    <%= form.label :body, 'Review Content:', class: 'form-label', for: 'review_body' %>
+    <%= form.text_area :body, class: 'form-control', rows: 4, id: 'review_body' %>
   </div>
 
   <div class="mb-3 form-check">
-    <%= form.check_box :status, class: 'form-check-input', id: 'status' %>
-    <%= form.label :status, 'Published', class: 'form-check-label', for: 'status' %>
+    <%= form.check_box :status, class: 'form-check-input', id: 'review_status' %>
+    <%= form.label :status, 'Published', class: 'form-check-label', for: 'review_status' %>
   </div>
 
   <div>
