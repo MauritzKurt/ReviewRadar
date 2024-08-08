@@ -11,7 +11,7 @@ class CompaniesController < ApplicationController
     authorize @company
 
     @reviews = policy_scope(@company.reviews).order(created_at: :desc)
-    @review = @company.reviews.build(author: current_user) # Initialize a new review for the form
+    @review = @company.reviews.build(author: current_user)
     authorize @review
   end
 

@@ -3,10 +3,15 @@
 <%= render @product %>
 
 <h2>Reviews</h2>
-<div class="reviews-list">
+
+<div id="new-review-form">
+  <%= render partial: 'reviews/review_form', locals: { review: @product.reviews.build } %>
+</div>
+
+<div id="reviews-list">
   <% if @reviews.any? %>
     <% @reviews.each do |review| %>
-        <%= render review %>
+      <%= render review %>
     <% end %>
   <% else %>
     <p>No reviews found.</p>
