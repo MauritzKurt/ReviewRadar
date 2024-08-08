@@ -25,19 +25,19 @@ class CompaniesController < ApplicationController
   end
 
   def create
-    @review = Review.new(review_params)
-    authorize @review
+    @company = Company.new(company_params)
+    authorize @company
 
-    if @review.save
+    if @company.save
       respond_to do |format|
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
-        format.json { render :show, status: :created, location: @review }
+        format.html { redirect_to @company, notice: 'Company was successfully created.' }
+        format.json { render :show, status: :created, location: @company }
         format.js
       end
     else
       respond_to do |format|
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
+        format.json { render json: @company.errors, status: :unprocessable_entity }
         format.js
       end
     end

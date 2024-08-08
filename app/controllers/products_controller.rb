@@ -25,19 +25,19 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @review = Review.new(review_params)
-    authorize @review
+    @product = Product.new(product_params)
+    authorize @product
 
-    if @review.save
+    if @product.save
       respond_to do |format|
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
-        format.json { render :show, status: :created, location: @review }
+        format.html { redirect_to @product, notice: 'product was successfully created.' }
+        format.json { render :show, status: :created, location: @product }
         format.js
       end
     else
       respond_to do |format|
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
         format.js
       end
     end
