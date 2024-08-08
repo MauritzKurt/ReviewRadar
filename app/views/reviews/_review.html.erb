@@ -1,20 +1,20 @@
 <div id="<%= dom_id review %>" class="review-card">
   <div class="review-header">
     <div class="review-author">
-      <strong>Author:</strong>
       <%= review.author.username %>
     </div>
     <div class="review-status">
-      <strong>Status:</strong>
-      <%= review.status ? 'Active' : 'Inactive' %>
+      <%= review.status ? 'Verified' : 'Not-Verified' %>
     </div>
   </div>
 
   <div class="review-content">
-    <div class="review-product">
-      <strong>Product:</strong>
-      <%= review.reviewable.name %>
-    </div>
+    <% if %>
+      <div class="review-<%= review.reviewable_type %>">
+        <strong><%= review.reviewable_type %>:</strong>
+        <%= review.reviewable.name %>
+      </div>
+    <% end %>
     <div class="review-title">
       <strong>Title:</strong>
       <%= review.title %>

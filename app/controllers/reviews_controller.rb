@@ -28,9 +28,17 @@ class ReviewsController < ApplicationController
     authorize @review
 
     if @review.save
-      redirect_to review_url(@review), notice: "Review was successfully created."
+      respond_to do |format|
+        format.html { redirect_to @review.reviewable, notice: "Review was successfully created." }
+        format.json { render :show, status: :created, location: @review }
+        format.js   # This will look for create.js.erb
+      end
     else
-      render :new, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @review.errors, status: :unprocessable_entity }
+        format.js   # This will look for create.js.erb
+      end
     end
   end
 

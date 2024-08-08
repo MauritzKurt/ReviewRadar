@@ -29,11 +29,7 @@ class ReviewPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      if user.admin?
-        scope.all
-      else
-        scope.where(author_id: user.id)
-      end
+      scope.all
     end
   end
 end
