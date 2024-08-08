@@ -31,13 +31,13 @@ class ReviewsController < ApplicationController
       respond_to do |format|
         format.html { redirect_to @review.reviewable, notice: "Review was successfully created." }
         format.json { render :show, status: :created, location: @review }
-        format.js   # This will look for create.js.erb
+        format.js
       end
     else
       respond_to do |format|
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @review.errors, status: :unprocessable_entity }
-        format.js   # This will look for create.js.erb
+        format.js
       end
     end
   end
