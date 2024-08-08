@@ -1,38 +1,48 @@
 .company-card {
   border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 16px;
-  margin: 16px 0;
-  background-color: #fff;
+  border-radius: 0.25rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
+  overflow: hidden;
 }
 
-.company-card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.company-logo {
+  width: 75px;
+  height: 75px;
+  margin: 1rem;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.company-card p {
-  margin: 8px 0;
-  font-family: Arial, sans-serif;
+.company-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.company-card .company-name strong,
-.company-card .company-url strong {
-  color: #333;
+.company-name {
+  font-size: 1.25rem;
   font-weight: bold;
+  margin-bottom: 0;
 }
 
-.company-card .company-name,
-.company-card .company-url {
-  color: #555;
-}
-
-.company-card .company-url a {
-  color: #1a0dab;
+.company-link {
+  color: #007bff;
   text-decoration: none;
 }
 
-.company-card .company-url a:hover {
+.company-link:hover {
   text-decoration: underline;
+}
+
+.company-url {
+  font-size: 1rem;
+  color: #007bff;
+}
+
+.company-url:hover {
+  text-decoration: underline;
+}
+
+.company-description {
+  margin-top: 1rem;
 }
