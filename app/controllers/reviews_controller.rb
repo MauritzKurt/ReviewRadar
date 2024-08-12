@@ -20,6 +20,14 @@ class ReviewsController < ApplicationController
   end
 
   def edit
+    @items = case @review.reviewable_type
+      when "Company"
+        policy_scope(Company)
+      when "Product"
+        policy_scope(Product)
+      else
+        []
+      end
     authorize @review
   end
 
