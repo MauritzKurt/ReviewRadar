@@ -1,27 +1,23 @@
-<div id="<%= dom_id review %>" class="review-card">
-  <div class="review-header">
-    <div class="review-author">
-      <%= review.author.username %>
-    </div>
-    <div class="review-status">
-      <%= review.status ? 'Verified' : 'Not-Verified' %>
-    </div>
-  </div>
-
-  <div class="review-content">
-    <% if %>
-      <div class="review-<%= review.reviewable_type %>">
-        <strong><%= review.reviewable_type %>:</strong>
-        <%= review.reviewable.name %>
+<div id="<%= dom_id review %>" class="review-card card mb-3">
+  <div class="card-body">
+    <div class="review-content">
+      <% if controller_name == 'review' && action_name == 'index' %>
+            <div class="review-<%= review.reviewable_type.downcase %>">
+              <strong><%= review.reviewable_type %>:</strong> <%= review.reviewable.name %>
+            </div>
+          <% end %>
+      <div class="review-title">
+        <strong><%= review.title.capitalize %></strong>
       </div>
-    <% end %>
-    <div class="review-title">
-      <strong>Title:</strong>
-      <%= review.title %>
-    </div>
-    <div class="review-body">
-      <strong>Body:</strong>
-      <%= review.body %>
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+        <div class="review-body">
+          <%= review.body.capitalize %>
+        </div>
+        <div class="review-author d-flex align-items-center mt-3 mt-md-0">
+          <%= image_tag review.author.avatar_image, alt: "#{review.author.username} avatar", class: "review-avatar img-fluid rounded-circle" %>
+          <span class="ms-2"><strong><%= review.author.username %></strong></span>
+        </div>
+      </div>
     </div>
   </div>
 </div>

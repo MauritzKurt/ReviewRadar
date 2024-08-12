@@ -1,20 +1,24 @@
-<div id="<%= dom_id product %>" class="product-card">
-  <p class="product-name">
-    <strong>Name:</strong>
-    <%= link_to "#{product.name}", product %>
-  </p>
-
-  <hr>
-
-  <p class="product-description">
-    <strong>Description:</strong>
-    <%= product.description %>
-  </p>
-
-  <% if request.url != products_url %>
-    <p class="product-company">
-      <strong>Company:</strong>
-      <%= link_to product.company.name, company_path(product.company) %></p>
-  </p>
-<% end %>
+<div id="<%= dom_id product %>" class="product-card card mb-3">
+  <div class="row g-0">
+    <div class="col-md-2 d-flex align-items-center justify-content-center">
+      <%= image_tag product.logo_image, alt: "#{product.name} logo", class: "product-logo img-fluid rounded-start" %>
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <div class="product-header">
+          <h5 class="product-name">
+            <%= link_to product.name, product, class: "product-link" %>
+          </h5>
+          <% if request.url != products_url %>
+            <span class="product-url">
+              <%= link_to product.url, product.url %>
+            </span>
+          <% end %>
+        </div>
+        <p class="product-description">
+          <%= product.description %>
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
