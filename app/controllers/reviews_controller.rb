@@ -54,9 +54,17 @@ class ReviewsController < ApplicationController
     authorize @review
 
     if @review.update(review_params)
-      redirect_to review_url(@review), notice: "Review was successfully updated."
+      respond_to do |format|
+        format.html { redirect_to @review.reviewable, notice: 'Review was successfully updated.' }
+        format.json { render :show, status: :ok, location: @review }
+        format.js
+      end
     else
-      render :edit, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :edit }
+        format.json { render json: @review.errors, status: :unprocessable_entity }
+        format.js
+      end
     end
   end
 

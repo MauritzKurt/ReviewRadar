@@ -40,9 +40,13 @@
 }
 
 .edit-review-form {
-  display: none;
+  margin-top: 20px;
 }
 
 .edit-review-form.active {
   display: block;
+}
+
+.hidden-form {
+  display: none;
 }
