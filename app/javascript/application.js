@@ -13,3 +13,4 @@ Rails.start();
 
 // Custom
 import "./reviews"
+import "./auto_dismiss_flash"

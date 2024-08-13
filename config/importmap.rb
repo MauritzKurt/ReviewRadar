@@ -10,3 +10,4 @@ pin 'jquery' # @3.7.1
 
 # custom
 pin 'reviews', to: 'reviews.js'
+pin "auto_dismiss_flash", to: "auto_dismiss_flash.js"
