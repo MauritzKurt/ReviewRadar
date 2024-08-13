@@ -52,18 +52,17 @@ class ReviewsController < ApplicationController
 
   def update
     authorize @review
-
+  
     if @review.update(review_params)
+      flash.now[:notice] = 'Review was successfully updated.'
       respond_to do |format|
         format.html { redirect_to @review.reviewable, notice: 'Review was successfully updated.' }
-        format.json { render :show, status: :ok, location: @review }
-        format.js
+        format.turbo_stream
       end
     else
       respond_to do |format|
         format.html { render :edit }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
-        format.js
+        format.turbo_stream
       end
     end
   end

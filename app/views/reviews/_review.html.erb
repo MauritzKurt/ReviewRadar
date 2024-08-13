@@ -1,46 +1,41 @@
-<div id="<%= dom_id review %>" class="review-card card mb-3">
-  <div class="card-body">
-    <div class="review-content">
-      <% if controller_name == 'review' && action_name == 'index' %>
-        <div class="review-<%= review.reviewable_type.downcase %>">
-          <strong><%= review.reviewable_type %>:</strong> <%= review.reviewable.name %>
-        </div>
-      <% end %>
-      <div>
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="review-title">
-            <strong><%= review.title.capitalize %></strong>
+<%= turbo_frame_tag dom_id(review) do %>
+  <div id="<%= dom_id review %>" class="review-card card mb-3">
+    <div class="card-body">
+      <div class="review-content">
+        <% if controller_name == 'review' && action_name == 'index' %>
+          <div class="review-<%= review.reviewable_type.downcase %>">
+            <strong><%= review.reviewable_type %>:</strong> <%= review.reviewable.name %>
           </div>
-          <% if review.author.username == current_user.username || current_user.admin? %>
-            <div class="review-actions d-flex">
-              <div class="review-edit me-2">
-                <%= link_to '#', class: 'btn-edit', data: { review_id: review.id } do %>
-                  <i class="fa-solid fa-pen-to-square text-primary"></i>
-                <% end %>
-              </div>
-              <div class="review-delete">
-                <%= link_to review_path(review), method: :delete, data: { confirm: 'Are you sure?' } do %>
-                  <i class="fa-solid fa-trash text-danger"></i>
-                <% end %>
-              </div>
+        <% end %>
+        <div>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="review-title">
+              <strong><%= review.title.capitalize %></strong>
             </div>
-          <% end %>
+            <% if review.author.username == current_user.username || current_user.admin? %>
+              <div class="review-actions d-flex">
+                <div class="review-edit me-2">
+                  <%= link_to 'Edit', edit_review_path(review), data: { turbo_frame: dom_id(review) }, class: 'btn-edit' %>
+                </div>
+                <div class="review-delete">
+                  <%= link_to review_path(review), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-danger' do %>
+                    <i class="fa-solid fa-trash"></i>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+          <div class="review-body">
+            <%= review.body.capitalize %>
+          </div>
+          <div class="review-author d-flex align-items-center mt-3 mt-md-0">
+            <%= image_tag review.author.avatar_image, alt: "#{review.author.username} avatar", class: "review-avatar img-fluid rounded-circle" %>
+            <span class="ms-2"><strong><%= review.author.username %></strong></span>
+          </div>
         </div>
       </div>
-      <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
-        <div class="review-body">
-          <%= review.body.capitalize %>
-        </div>
-        <div class="review-author d-flex align-items-center mt-3 mt-md-0">
-          <%= image_tag review.author.avatar_image, alt: "#{review.author.username} avatar", class: "review-avatar img-fluid rounded-circle" %>
-          <span class="ms-2"><strong><%= review.author.username %></strong></span>
-        </div>
-      </div>
-
-      <div id="edit_review_<%= review.id %>" class="edit-review-form d-none">
-        <%= render 'reviews/form', review: review %>
-      </div>
-
     </div>
   </div>
-</div>
+<% end %>

@@ -1,4 +1,0 @@
-$("#<%= dom_id(@review) %> .review-title strong").text("<%= j @review.title.capitalize %>");
-$("#<%= dom_id(@review) %> .review-body").text("<%= j @review.body.capitalize %>");
-
-$("#edit_review_<%= @review.id %>").toggleClass('d-none');
