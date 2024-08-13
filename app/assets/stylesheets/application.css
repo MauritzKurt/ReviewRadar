@@ -19,4 +19,5 @@
  *= require_tree ./products
  *= require_tree ./companies
  *= require_tree ./shared
+ *= require_tree ./homepage
  */

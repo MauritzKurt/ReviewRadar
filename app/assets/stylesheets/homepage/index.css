@@ -1,0 +1,30 @@
+/* app/assets/stylesheets/search_results.css */
+
+.product-card, .company-card {
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.product-name, .company-name {
+  font-size: 1.25rem;
+  margin-bottom: 0;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.accordion-button {
+  font-weight: bold;
+}
+
+.accordion-body {
+  padding: 1rem 1.5rem;
+}
+
+.accordion-item {
+  border: none;
+}
