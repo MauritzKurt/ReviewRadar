@@ -1,5 +1,3 @@
-// app/javascript/reviews.js
-
 document.addEventListener('turbo:load', function() {
   const typeRadios = document.querySelectorAll('input[name="review[reviewable_type]"]');
   const itemSelect = document.getElementById('review_reviewable_id');

@@ -1,20 +1,24 @@
-<div id="<%= dom_id company %>" class="company-card">
-  <p class="company-name">
-    <strong>Name:</strong>
-    <%= link_to "#{company.name}", company %>
-  </p>
-
-  <hr>
-
-  <p class="company-description">
-    <strong>Description:</strong>
-    <%= company.description %>
-  </p>
-
-  <% if request.url != companies_url %>
-    <p class="company-url">
-      <strong>Url:</strong>
-      <%= link_to company.url, company.url %>
-    </p>
-  <% end%>
+<div id="<%= dom_id company %>" class="company-card card mb-3">
+  <div class="row g-0">
+    <div class="col-md-2 d-flex align-items-center justify-content-center">
+      <%= image_tag company.logo_image, alt: "#{company.name} logo", class: "company-logo img-fluid rounded-start" %>
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <div class="company-header">
+          <h5 class="company-name">
+            <%= link_to company.name, company, class: "company-link" %>
+          </h5>
+          <% if request.url != companies_url %>
+            <span class="company-url">
+              <%= link_to company.url, company.url %>
+            </span>
+          <% end %>
+        </div>
+        <p class="company-description">
+          <%= company.description %>
+        </p>
+      </div>
+    </div>
+  </div>
 </div>

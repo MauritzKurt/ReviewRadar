@@ -20,6 +20,14 @@ class ReviewsController < ApplicationController
   end
 
   def edit
+    @items = case @review.reviewable_type
+      when "Company"
+        policy_scope(Company)
+      when "Product"
+        policy_scope(Product)
+      else
+        []
+      end
     authorize @review
   end
 
@@ -28,19 +36,34 @@ class ReviewsController < ApplicationController
     authorize @review
 
     if @review.save
-      redirect_to review_url(@review), notice: "Review was successfully created."
+      respond_to do |format|
+        format.html { redirect_to @review.reviewable, notice: "Review was successfully created." }
+        format.json { render :show, status: :created, location: @review }
+        format.js
+      end
     else
-      render :new, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @review.errors, status: :unprocessable_entity }
+        format.js
+      end
     end
   end
 
   def update
     authorize @review
-
+  
     if @review.update(review_params)
-      redirect_to review_url(@review), notice: "Review was successfully updated."
+      flash.now[:notice] = 'Review was successfully updated.'
+      respond_to do |format|
+        format.html { redirect_to @review.reviewable, notice: 'Review was successfully updated.' }
+        format.turbo_stream
+      end
     else
-      render :edit, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :edit }
+        format.turbo_stream
+      end
     end
   end
 

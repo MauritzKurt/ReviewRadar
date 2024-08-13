@@ -91,20 +91,20 @@ unless Rails.env.production?
 
     desc 'Add Companies'
     task sample_companies: :environment do
-      11.times do
+      15.times do
         name = Faker::Device.manufacturer
         Company.create(
           name:,
           description: Faker::Company.catch_phrase,
-          logo_image: "https://robohash.org/#{name}",
-          url: 'https://google.com'
+          logo_image: "logo_placeholder.png",
+          url: "https://www.#{name.downcase}.com"
         )
       end
     end
 
     desc 'Add Products'
     task sample_products: :environment do
-      50.times do
+      75.times do
         name = Faker::Device.model_name
         Product.create(
           name:,

@@ -1,0 +1,33 @@
+<div class="accordion" id="reviewAccordion">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingReview">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseReview" aria-expanded="false" aria-controls="collapseReview">
+        <strong>Write a Review</strong>
+      </button>
+    </h2>
+    <div id="collapseReview" class="accordion-collapse collapse" aria-labelledby="headingReview" data-bs-parent="#reviewAccordion">
+      <div class="accordion-body">
+        <%= form_with(model: [review.reviewable, review], local: false) do |form| %>
+          <%= form.hidden_field :author_id, value: current_user.id %>
+          <%= form.hidden_field :reviewable_type, value: review.reviewable_type %>
+          <%= form.hidden_field :reviewable_id, value: review.reviewable_id %>
+          <%= form.hidden_field :status, value: false %>
+
+          <div class="mb-3">
+            <%= form.label :title, 'Title', class: 'form-label' %>
+            <%= form.text_field :title, class: 'form-control' %>
+          </div>
+
+          <div class="mb-3">
+            <%= form.label :body, 'Review Content', class: 'form-label' %>
+            <%= form.text_area :body, class: 'form-control', rows: 4 %>
+          </div>
+
+          <div>
+            <%= form.submit 'Submit', class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

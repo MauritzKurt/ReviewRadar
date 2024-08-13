@@ -1,31 +1,26 @@
-<p style="color: green"><%= notice %></p>
-
 <h1><%= @company.name %></h1>
 
 <%= render @company %>
 
 <h2>Reviews</h2>
-<div class="reviews-list">
+
+<div id="new-review-form">
+  <%= render partial: 'reviews/review_form', locals: { review: @company.reviews.build } %>
+</div>
+
+<div id="reviews-list">
   <% if @reviews.any? %>
     <% @reviews.each do |review| %>
-      <div class="review-card">
-        <p class="review-title"><strong>Title:</strong> <%= review.title %></p>
-        <p class="review-body"><strong>Body:</strong> <%= review.body %></p>
-        <p class="review-author"><strong>Author:</strong> <%= review.author.username %></p>
-      </div>
+      <%= render review %>
     <% end %>
   <% else %>
     <p>No reviews found.</p>
   <% end %>
 </div>
 
-<div>
-  <%= link_to "Back to companies", companies_path %>
-</div>
-
 <% if current_user.admin? %>
   <div>
-    <%= link_to "Edit this company", edit_company_path(@company) %> |
-    <%= button_to "Destroy this company", @company, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Edit this company', edit_company_path(@company) %> |
+    <%= button_to 'Destroy this company', @company, method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
 <% end %>

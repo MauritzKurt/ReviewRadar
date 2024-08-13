@@ -1,0 +1,7 @@
+<%= turbo_stream.replace dom_id(@review) do %>
+  <%= render partial: 'reviews/review', locals: { review: @review } %>
+<% end %>
+
+<%= turbo_stream.replace 'flash' do %>
+  <%= render partial: 'shared/flash', locals: { message: flash[:notice], css_class: "success" } %>
+<% end %>

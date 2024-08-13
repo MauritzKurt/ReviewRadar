@@ -1,14 +1,9 @@
-<p style="color: green"><%= notice %></p>
+<p class="text-success"><%= notice %></p>
 
-<h1>Reviews</h1>
+<h1>My Reviews</h1>
 
 <div id="reviews">
-  <% @reviews.each do |review| %>
+  <% @reviews.where(author: current_user).each do |review| %>
     <%= render review %>
-    <p>
-      <%= link_to "Show this review", review %>
-    </p>
   <% end %>
 </div>
-
-<%= link_to "New review", new_review_path %>

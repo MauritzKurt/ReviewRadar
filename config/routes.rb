@@ -10,7 +10,12 @@ Rails.application.routes.draw do
       get :get_items
     end
   end
-   
-  resources :products
-  resources :companies
+  
+  resources :products do
+    resources :reviews, only: [:create]
+  end
+  
+  resources :companies do
+    resources :reviews, only: [:create]
+  end
 end

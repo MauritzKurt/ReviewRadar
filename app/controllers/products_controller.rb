@@ -7,9 +7,12 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @reviews = @product.reviews
+    @product = Product.find(params[:id])
     authorize @product
-    authorize @reviews
+
+    @reviews = policy_scope(@product.reviews).order(created_at: :desc)
+    @review = @product.reviews.build(author: current_user)
+    authorize @review
   end
 
   def new
@@ -25,13 +28,17 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     authorize @product
 
-    respond_to do |format|
-      if @product.save
-        format.html { redirect_to product_url(@product), notice: "Product was successfully created." }
+    if @product.save
+      respond_to do |format|
+        format.html { redirect_to @product, notice: 'product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
-      else
+        format.js
+      end
+    else
+      respond_to do |format|
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @product.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

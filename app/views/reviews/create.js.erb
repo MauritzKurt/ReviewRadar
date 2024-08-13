@@ -1,0 +1,7 @@
+<% if @review.errors.any? %>
+  alert("Error creating review: <%= @review.errors.full_messages.join(', ') %>");
+<% else %>
+  $('#reviews-list').prepend('<%= j render @review %>');
+  $('#new-review-form').find('form')[0].reset();
+  $('#collapseReview').collapse('hide');
+<% end %>

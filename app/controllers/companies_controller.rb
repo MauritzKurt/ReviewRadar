@@ -7,9 +7,12 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    @reviews = @company.reviews
+    @company = Company.find(params[:id])
     authorize @company
-    authorize @reviews
+
+    @reviews = policy_scope(@company.reviews).order(created_at: :desc)
+    @review = @company.reviews.build(author: current_user)
+    authorize @review
   end
 
   def new
@@ -25,13 +28,17 @@ class CompaniesController < ApplicationController
     @company = Company.new(company_params)
     authorize @company
 
-    respond_to do |format|
-      if @company.save
-        format.html { redirect_to company_url(@company), notice: "Company was successfully created." }
+    if @company.save
+      respond_to do |format|
+        format.html { redirect_to @company, notice: 'Company was successfully created.' }
         format.json { render :show, status: :created, location: @company }
-      else
+        format.js
+      end
+    else
+      respond_to do |format|
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @company.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

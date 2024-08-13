@@ -1,26 +1,21 @@
-<p style="color: green"><%= notice %></p>
-
 <h1><%= @product.name %></h1>
 
 <%= render @product %>
 
 <h2>Reviews</h2>
-<div class="reviews-list">
+
+<div id="new-review-form">
+  <%= render partial: 'reviews/review_form', locals: { review: @product.reviews.build } %>
+</div>
+
+<div id="reviews-list">
   <% if @reviews.any? %>
     <% @reviews.each do |review| %>
-      <div class="review-card">
-        <p class="review-title"><strong>Title:</strong> <%= review.title %></p>
-        <p class="review-body"><strong>Body:</strong> <%= review.body %></p>
-        <p class="review-author"><strong>Author:</strong> <%= review.author.username %></p>
-      </div>
+      <%= render review %>
     <% end %>
   <% else %>
     <p>No reviews found.</p>
   <% end %>
-</div>
-
-<div>
-  <%= link_to "Back to products", products_path %>
 </div>
 
 <% if current_user.admin? %>
