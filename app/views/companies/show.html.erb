@@ -8,6 +8,8 @@
   <%= render partial: 'reviews/review_form', locals: { review: @company.reviews.build } %>
 </div>
 
+<br>
+
 <div id="reviews-list">
   <% if @reviews.any? %>
     <% @reviews.each do |review| %>
