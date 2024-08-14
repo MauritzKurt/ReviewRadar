@@ -46,3 +46,25 @@
 .company-description {
   margin-top: 1rem;
 }
+
+.company-tabs .nav-tabs .nav-link {
+  color: #495057;
+  font-weight: bold;
+}
+
+.company-tabs .nav-tabs .nav-link.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.company-tabs .tab-content .tab-pane {
+  padding-top: 1rem;
+}
+
+.product-card, .review-card {
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #f9f9f9;
+}
