@@ -4,7 +4,7 @@
 #
 #  id          :bigint           not null, primary key
 #  description :text             not null
-#  logo_image  :string           default("logo_placeholder.png")
+#  logo_image  :string           default("product_logo_placeholder.png")
 #  name        :string           not null
 #  url         :string           not null
 #  created_at  :datetime         not null
