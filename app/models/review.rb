@@ -24,7 +24,7 @@ class Review < ApplicationRecord
   belongs_to :reviewable, polymorphic: true
 
   validates :title, presence: true
-  validates :body, presence: true
+  validates :body, presence: true, uniqueness: true
   validates :author_id, presence: true, if: -> { source == 'ReviewRadar' }
   validates :reviewable_id, presence: true
   validates :pending, inclusion: { in: [true, false] }
@@ -32,6 +32,10 @@ class Review < ApplicationRecord
   validates :rating, inclusion: { in: 1..5, message: 'must be between 1 and 5' }
 
   validate :pending_and_verified_cannot_be_true_at_the_same_time
+
+  def author
+    super || NullAuthor.new
+  end
 
   private
 

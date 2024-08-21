@@ -1,10 +1,9 @@
-# app/services/trustpilot_scraper.rb
-require "nokogiri"
-require "open-uri"
-
 class TrustpilotScraper
+  require "public_suffix"
+
   def initialize(url)
     @url = url
+    @extracted_domain = extract_domain_from_url(url)
   end
 
   def scrape_reviews
@@ -13,28 +12,33 @@ class TrustpilotScraper
 
     reviews = []
 
-    # Loop through each review card
     doc.css(".styles_cardWrapper__LcCPA").each do |review_card|
-      puts review_card.to_html
-
-      # Extract and clean reviewer name
-      reviewer_name = safe_text(review_card.at_css(".styles_consumerDetails__ZFieb span"))
-      reviewer_name = reviewer_name.gsub(" from", "")
-
+      reviewer_name = safe_text(review_card.at_css(".styles_consumerDetails__ZFieb span")).gsub(" from", "")
       rating = extract_rating(review_card.at_css(".star-rating_starRating__4rrcf img")["alt"])
+      review_title = safe_text(review_card.at_css('a[data-review-title-typography="true"] h2'))
+      review_body = safe_text(review_card.at_css('p[data-service-review-text-typography="true"]'))
+      date_of_experience = safe_text(review_card.at_css('[data-service-review-date-of-experience-typography="true"]')).gsub("Date of experience: ", "")
+      reviewable_id = find_company_id_by_name(@extracted_domain)
 
-      review_title = review_card.at_css('a[data-review-title-typography="true"] h2')&.text&.strip
-      review_body = review_card.at_css('p[data-service-review-text-typography="true"]')&.text&.strip
-      
-      date_of_experience = safe_text(review_card.at_css('[data-service-review-date-of-experience-typography="true"]'))
-      date_of_experience = date_of_experience.gsub("Date of experience: ", "")
+      Review.create(
+        title: review_title,
+        body: review_body,
+        rating: rating,
+        reviewable_type: "Company",
+        reviewable_id: reviewable_id,
+        source: "TrustPilot",
+        pending: false,
+        status: false,
+        author_id: nil,
+        created_at: date_of_experience,
+      )
 
       reviews << {
         title: review_title,
         body: review_body,
         rating: rating,
         reviewable_type: "Company",
-        reviewable_id: find_company_id_by_name(@extracted_domain),
+        reviewable_id: reviewable_id,
         source: "TrustPilot",
         pending: false,
         status: false,
@@ -49,14 +53,7 @@ class TrustpilotScraper
   private
 
   def extract_rating(rating_text)
-    case rating_text
-    when /1/ then 1
-    when /2/ then 2
-    when /3/ then 3
-    when /4/ then 4
-    when /5/ then 5
-    else 3
-    end
+    rating_text.match(/\d+/).to_s.to_i
   end
 
   def safe_text(element)
@@ -65,5 +62,17 @@ class TrustpilotScraper
 
   def find_company_id_by_name(company_name)
     Company.where("name ILIKE ?", "%#{company_name}%").pluck(:id).first
+  end
+
+  def extract_domain_from_url(url)
+    uri = URI.parse(url)
+
+    if uri.host.include?("trustpilot.com") && uri.path.include?("review")
+      company_segment = uri.path.split("/").last
+
+      return company_segment.gsub(/^www\./, "").split(".").first
+    end
+
+    uri.host.split(".").second || uri.host.split(".").first
   end
 end

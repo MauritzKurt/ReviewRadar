@@ -24,9 +24,9 @@ class ScrapesController < ApplicationController
 
   def determine_scraper(source)
     case source.downcase
-    when 'trustpilot'
+    when "trustpilot"
       TrustpilotScraper
-    when 'google'
+    when "google"
       GoogleReviewsScraper
     else
       nil
@@ -39,6 +39,8 @@ class ScrapesController < ApplicationController
 
   def extract_domain_from_url(url)
     domain = URI.parse(url).host
-    domain.split('.').first if domain.present?
+    domain_parts = domain.split(".")
+    domain = domain_parts[-2] if domain_parts.size >= 2
+    domain
   end
 end

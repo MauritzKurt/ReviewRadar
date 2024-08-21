@@ -465,6 +465,7 @@ DEPENDENCIES
   open-uri
   pg (~> 1.1)
   pry-rails
+  public_suffix
   puma
   pundit
   rails (~> 7.1.3, >= 7.1.3.2)
