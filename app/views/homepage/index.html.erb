@@ -1,69 +1,72 @@
-<h1>Results for: <%= params[:q] %></h1>
+<div class="container my-5">
+  <h1 class="display-6">Results for: <%= params[:q] %></h1>
 
-<%= form_with url: search_path, method: :get, local: true do %>
-  <div class="field">
-    <%= label_tag :q, "Search for Products or Companies" %>
-    <%= text_field_tag :q, params[:q] %>
-  </div>
-  <div class="actions">
-    <%= submit_tag "Search" %>
-  </div>
-<% end %>
+  <%= form_with url: search_path, method: :get, local: true, class: "my-4" do %>
+    <div class="input-group mb-3">
+      <%= text_field_tag :q, params[:q], class: "form-control", placeholder: "Search for Products or Companies" %>
+      <button class="btn btn-primary" type="submit">
+        Search
+      </button>
+    </div>
+  <% end %>
 
-<% if @products.any? || @companies.any? %>
-  <div class="accordion" id="accordionExample">
-    <% if @products.any? %>
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            Products
-          </button>
-        </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <% @products.each do |product| %>
-              <div class='product-card'>
-                <p class="product-name"><strong>Name:</strong> <%= link_to product.name, product_path(product) %></p>
-                <% if current_user.admin? %>
-                  <p>
-                    <%= link_to 'Show', product %>
-                    <%= link_to 'Edit', edit_product_path(product) %>
-                    <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
-                  </p>
-                <% end %>
-              </div>
-            <% end %>
+  <% if @products.any? || @companies.any? %>
+    <div class="accordion" id="accordionExample">
+      <% if @products.any? %>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Products
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <% @products.each do |product| %>
+                <div class='product-card card mb-3'>
+                  <div class="card-body">
+                    <p class="product-name fw-bold"><%= link_to product.name, product_path(product), class: "stretched-link" %></p>
+                    <% if current_user.admin? %>
+                      <div class="admin-actions mt-2">
+                        <%= link_to 'Edit', edit_product_path(product), class: 'btn btn-sm btn-warning' %>
+                        <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
-    <% if @companies.any? %>
-    
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            Companies
-          </button>
-        </h2>
-        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <% @companies.each do |company| %>
-              <div class="company-card">
-                <p class="company-name"><strong>Name:</strong> <%= link_to company.name, company_path(company) %></p>
-                <% if current_user.admin? %>
-                  <p>
-                    <%= link_to 'Show', company %>
-                    <%= link_to 'Edit', edit_company_path(company) %>
-                    <%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %>
-                  </p>
-                <% end %>
-              </div>
-            <% end %>
+      <% end %>
+
+      <% if @companies.any? %>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Companies
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <% @companies.each do |company| %>
+                <div class="company-card card mb-3">
+                  <div class="card-body">
+                    <p class="company-name fw-bold"><%= link_to company.name, company_path(company), class: "stretched-link" %></p>
+                    <% if current_user.admin? %>
+                      <div class="admin-actions mt-2">
+                        <%= link_to 'Edit', edit_company_path(company), class: 'btn btn-sm btn-warning' %>
+                        <%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
-<% else %>
-  <h3>No Results found.</h3>
-<% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <h3 class="mt-4">No Results found.</h3>
+  <% end %>
+</div>

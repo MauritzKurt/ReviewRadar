@@ -12,7 +12,7 @@
             <div class="review-title">
               <strong><%= review.title.capitalize %></strong>
             </div>
-            <% if review.author.username == current_user.username || current_user.admin? %>
+            <% if review.source == 'ReviewRadar' && review.author.username == current_user.username || current_user.admin? %>
               <div class="review-actions d-flex">
                 <div class="review-edit me-2">
                   <%= link_to edit_review_path(review), data: { turbo_frame: dom_id(review) }, class: 'btn-edit' do %>
@@ -20,8 +20,8 @@
                   <% end %>
                 </div>
                 <div class="review-delete">
-                  <%= link_to review_path(review), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-danger' do %>
-                    <i class="fa-solid fa-trash"></i>
+                  <%= link_to review_path(review), method: :delete, data: { confirm: 'Are you sure?' } do %>
+                    <i class="fa-solid fa-trash text-danger"></i>
                   <% end %>
                 </div>
               </div>

@@ -1,0 +1,63 @@
+.form-inputs {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mb-3, .mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+.btn-primary {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+}
+
+/* Edit account */
+
+.edit-account-container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.edit-account-title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.edit-account-form-container {
+  margin-top: 2rem;
+}
+
+.edit-account-form-inputs .edit-account-form-control {
+  margin-bottom: 1rem;
+}
+
+.edit-account-form-actions .edit-account-submit-btn {
+  width: 100%;
+  padding: 0.75rem;
+}
+
+.edit-account-text-warning {
+  color: #ffc107;
+}
+
+.edit-account-cancel-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.edit-account-delete-btn {
+  width: 100%;
+  padding: 0.75rem;
+}

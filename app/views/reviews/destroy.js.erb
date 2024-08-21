@@ -1,0 +1,4 @@
+$("#<%= j dom_id(@review) %>").remove();
+$("#flash").html("<%= j render(partial: 'shared/flash', locals: { message: 'Review was successfully destroyed.', css_class: 'success' }) %>");
+
+setupAutoDismiss();

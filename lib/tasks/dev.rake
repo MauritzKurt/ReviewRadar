@@ -108,7 +108,7 @@ unless Rails.env.production?
         name = Faker::Device.model_name
         Product.create(
           name:,
-          logo_image: "https://robohash.org/#{name}",
+          logo_image: "product_logo_placeholder.png",
           url: 'https://google.com',
           description: Faker::ChuckNorris.fact,
           company_id: Company.all.sample.id

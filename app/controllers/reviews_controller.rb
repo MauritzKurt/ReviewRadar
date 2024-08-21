@@ -52,11 +52,11 @@ class ReviewsController < ApplicationController
 
   def update
     authorize @review
-  
+
     if @review.update(review_params)
-      flash.now[:notice] = 'Review was successfully updated.'
+      flash.now[:notice] = "Review was successfully updated."
       respond_to do |format|
-        format.html { redirect_to @review.reviewable, notice: 'Review was successfully updated.' }
+        format.html { redirect_to @review.reviewable, notice: "Review was successfully updated." }
         format.turbo_stream
       end
     else
@@ -70,7 +70,11 @@ class ReviewsController < ApplicationController
   def destroy
     authorize @review
     @review.destroy
-    redirect_to reviews_url, notice: "Review was successfully destroyed."
+
+    respond_to do |format|
+      format.html { redirect_back fallback_location: reviews_url, notice: "Review was successfully destroyed." }
+      format.js
+    end
   end
 
   def get_items

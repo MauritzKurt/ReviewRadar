@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   resources :companies do
     resources :reviews, only: [:create]
   end
+
+  get 'scrapes/show', to: 'scrapes#show', as: :scrape
 end

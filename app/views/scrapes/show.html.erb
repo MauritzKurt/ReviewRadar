@@ -1,0 +1,17 @@
+<h1>Scraped Reviews</h1>
+
+<% if @scraped_data.any? %>
+  <% @scraped_data.each do |review| %>
+    <div class="review">
+      <h3><%= review[:review_title] %></h3>
+      <p><strong>Reviewer:</strong> <%= review[:reviewer_name] %></p>
+      <p><strong>Rating:</strong> <%= review[:rating] %> <%= review[:rating] == 1 ? 'star' : 'stars' %></p>
+      <p><strong><%= review[:title] %></strong></p>
+      <p><%= review[:body] %></p>
+      <p><strong>Date of Experience:</strong> <%= review[:date_of_experience] %></p>
+    </div>
+    <hr>
+  <% end %>
+<% else %>
+  <p>No reviews found or unsupported URL.</p>
+<% end %>

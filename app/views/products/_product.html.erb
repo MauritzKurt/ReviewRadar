@@ -9,7 +9,7 @@
           <h5 class="product-name">
             <%= link_to product.name, product, class: "product-link" %>
           </h5>
-          <% if request.url != products_url %>
+          <% if controller_name == 'products' && action_name == 'show' %>
             <span class="product-url">
               <%= link_to product.url, product.url %>
             </span>

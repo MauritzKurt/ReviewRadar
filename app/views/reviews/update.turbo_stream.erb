@@ -3,5 +3,10 @@
 <% end %>
 
 <%= turbo_stream.replace 'flash' do %>
-  <%= render partial: 'shared/flash', locals: { message: flash[:notice], css_class: "success" } %>
+  <div id="flash">
+    <%= render partial: 'shared/flash', locals: { message: flash[:notice] || flash[:alert], css_class: flash[:notice] ? "success" : "danger" } %>
+    <script>
+      setupAutoDismiss();
+    </script>
+  </div>
 <% end %>
