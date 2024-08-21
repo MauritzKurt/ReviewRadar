@@ -20,7 +20,7 @@
     ".vscode": true,
     ".bundle": true,
   },
-  "files.insertFinalNewline": true,
+  "files.insertFinalNewline": false,
   "files.trimFinalNewlines": true,
   "screencastMode.keyboardOptions": {
     "showKeys": false,
