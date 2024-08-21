@@ -25,6 +25,8 @@ gem 'stimulus-rails'
 gem 'table_print'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'nokogiri'
+gem 'open-uri'
 
 # Use Sass to process CSS
 # gem "sassc-rails"

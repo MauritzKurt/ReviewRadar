@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_14_154709) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_18_024945) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_14_154709) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer "author_id", null: false
+    t.integer "author_id"
     t.string "title", null: false
     t.text "body", null: false
     t.boolean "status", default: false, null: false
@@ -43,6 +43,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_14_154709) do
     t.string "reviewable_type", null: false
     t.bigint "reviewable_id", null: false
     t.boolean "pending", default: false, null: false
+    t.string "source", default: "ReviewRadar"
+    t.integer "rating", default: 3, null: false
     t.index ["reviewable_type", "reviewable_id"], name: "index_reviews_on_reviewable"
   end
 
