@@ -1,3 +1,4 @@
+# What is this file being used for? If it's not in the schema, it's not a model and should be in a concern
 class NullAuthor
   def method_missing(*)
     nil

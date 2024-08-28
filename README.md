@@ -7,3 +7,6 @@
 bin/dev
 ```
 **Navigate to the 'Ports' tab and open the active port in your browser**
+
+
+<!-- bin/dev doesn't work without setting up the database first -->

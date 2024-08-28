@@ -18,16 +18,16 @@ class ReviewsController < ApplicationController
     @items = policy_scope(Company)
     authorize @review
   end
-
+  # fixed indentation issue for `case` and `when` block
   def edit
-    @items = case @review.reviewable_type
-      when "Company"
-        policy_scope(Company)
-      when "Product"
-        policy_scope(Product)
-      else
-        []
-      end
+    @items =  case @review.reviewable_type
+              when "Company"
+                policy_scope(Company)
+              when "Product"
+                policy_scope(Product)
+              else
+                []
+              end
     authorize @review
   end
 
@@ -80,14 +80,14 @@ class ReviewsController < ApplicationController
   def get_items
     type = params[:type]
 
-    @items = case type
-      when "Company"
-        policy_scope(Company)
-      when "Product"
-        policy_scope(Product)
-      else
-        []
-      end
+    @items =  case type
+              when "Company"
+                policy_scope(Company)
+              when "Product"
+                policy_scope(Product)
+              else
+                []
+              end
 
     authorize @items.first, :index? if @items.any?
 

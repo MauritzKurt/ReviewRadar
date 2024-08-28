@@ -32,7 +32,7 @@ class Review < ApplicationRecord
   validates :rating, inclusion: { in: 1..5, message: 'must be between 1 and 5' }
 
   validate :pending_and_verified_cannot_be_true_at_the_same_time
-
+  # Explain what `author` is doing and why
   def author
     super || NullAuthor.new
   end
