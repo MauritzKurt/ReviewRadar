@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV["ReviewRadar_DATABASE_URL"] %>
   database: ReviewRadar_production
   username: ReviewRadar
   password: <%= ENV["REVIEWRADAR_DATABASE_PASSWORD"] %>
