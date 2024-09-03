@@ -23,18 +23,10 @@ gem 'rails', '~> 7.1.3', '>= 7.1.3.2'
 gem 'ransack'
 gem 'redis', '~> 4.0'
 gem 'sprockets-rails'
-gem 'sqlite3', '~> 1.4'
 gem 'stimulus-rails'
 gem 'table_print'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
-
-# Use Sass to process CSS
-# gem "sassc-rails"
-
-# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
 
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
@@ -54,9 +46,6 @@ group :development do
   gem 'rufo'
   gem 'specs_to_readme'
   gem 'web-console'
-
-  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
 end
 
 group :test do
